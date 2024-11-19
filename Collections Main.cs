@@ -13,13 +13,17 @@
 
             List<int> unique = new List<int>();
 
-            for(int i = 0; i < nums.Count; i++)
+            for (int i = 0; i < nums.Count; i++)
             {
                 if (!unique.Contains(nums[i]))
                 {
-                    unique.Add(nums[i]);
+                    int index = unique.BinarySearch(nums[i]);
+                    if (index < 0)
+                    {
+                        index = ~index;
+                        unique.Insert(index, nums[i]);
+                    }
                 }
-                unique.Sort();
             }
 
             Console.WriteLine();
